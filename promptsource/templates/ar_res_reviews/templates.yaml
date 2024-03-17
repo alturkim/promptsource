@@ -1,0 +1,18 @@
+dataset: ar_res_reviews
+templates:
+  4d08fddb-07ad-4804-bd98-3e9e738107ef: !Template
+    answer_choices: "\u0644\u0627 ||| \u0646\u0639\u0645"
+    id: 4d08fddb-07ad-4804-bd98-3e9e738107ef
+    jinja: "\u0647\u0644 \u0633\u062A\u0642\u0648\u0645 \u0628\u0632\u064A\u0627\u0631\
+      \u0629 \u0647\u0630\u0627 \u0627\u0644\u0645\u0637\u0639\u0645 \u0628\u0639\u062F\
+      \ \u0642\u0631\u0627\u0621\u0629 \u0647\u0630\u0627 \u0627\u0644\u062A\u0642\
+      \u064A\u064A\u0645: {{text}} \u061F\n|||\n{{answer_choices[polarity]}}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages:
+      - ar
+      metrics:
+      - Accuracy
+      original_task: true
+    name: ar_res_reviews_1
+    reference: ''

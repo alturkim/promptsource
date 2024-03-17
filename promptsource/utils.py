@@ -99,13 +99,51 @@ def render_features(features):
 #
 
 
-def filter_english_datasets():
-    """
-    Filter English datasets based on language tags in metadata.
+# def filter_english_datasets():
+#     """
+#     Filter English datasets based on language tags in metadata.
 
-    Also includes the datasets of any users listed in INCLUDED_USERS
+#     Also includes the datasets of any users listed in INCLUDED_USERS
+#     """
+#     english_datasets = []
+
+#     response = requests.get("https://huggingface.co/api/datasets?full=true")
+#     tags = response.json()
+#     while "next" in response.links:
+#         # Handle pagination of `/api/datasets` endpoint
+#         response = requests.get(response.links["next"]["url"])
+#         tags += response.json()
+
+#     for dataset in tags:
+#         dataset_name = dataset["id"]
+
+#         is_community_dataset = "/" in dataset_name
+#         if is_community_dataset:
+#             user = dataset_name.split("/")[0]
+#             if user in INCLUDED_USERS:
+#                 english_datasets.append(dataset_name)
+#             continue
+
+#         if "cardData" not in dataset:
+#             continue
+#         metadata = dataset["cardData"]
+
+#         if "language" not in metadata:
+#             continue
+#         languages = metadata["language"]
+
+#         if "en" in languages or "en-US" in languages:
+#             english_datasets.append(dataset_name)
+
+#     return sorted(english_datasets)
+
+def filter_arabic_datasets():
     """
-    english_datasets = []
+    Filter Arabic datasets based on language tags in metadata.
+
+    Also includes the datasets arbml
+    """
+    arabic_datasets = []
 
     response = requests.get("https://huggingface.co/api/datasets?full=true")
     tags = response.json()
@@ -120,8 +158,8 @@ def filter_english_datasets():
         is_community_dataset = "/" in dataset_name
         if is_community_dataset:
             user = dataset_name.split("/")[0]
-            if user in INCLUDED_USERS:
-                english_datasets.append(dataset_name)
+            if user in ["arbml"]:
+                arabic_datasets.append(dataset_name)
             continue
 
         if "cardData" not in dataset:
@@ -132,14 +170,13 @@ def filter_english_datasets():
             continue
         languages = metadata["language"]
 
-        if "en" in languages or "en-US" in languages:
-            english_datasets.append(dataset_name)
+        if "ar" in languages:
+            arabic_datasets.append(dataset_name)
 
-    return sorted(english_datasets)
-
+    return sorted(arabic_datasets)
 
 def list_datasets():
     """Get all the datasets to work with."""
-    dataset_list = filter_english_datasets()
+    dataset_list = filter_arabic_datasets()
     dataset_list.sort(key=lambda x: x.lower())
     return dataset_list

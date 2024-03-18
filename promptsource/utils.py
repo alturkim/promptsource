@@ -137,6 +137,7 @@ def render_features(features):
 
 #     return sorted(english_datasets)
 
+
 def filter_arabic_datasets():
     """
     Filter Arabic datasets based on language tags in metadata.
@@ -174,6 +175,7 @@ def filter_arabic_datasets():
             arabic_datasets.append(dataset_name)
 
     return sorted(arabic_datasets)
+
 
 def list_datasets():
     """Get all the datasets to work with."""

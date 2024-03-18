@@ -449,6 +449,14 @@ def run_app():
                     st.markdown("##### Jinja template")
                     splitted_template = template.jinja.split("|||")
                     st.markdown("###### Input template")
+                    st.markdown("""
+                            <style>
+                            pre {
+                            unicode-bidi:plaintext;
+                            direction: RTL;
+                            }
+                            </style>
+                                """, unsafe_allow_html=True)
                     show_jinja(splitted_template[0].strip())
                     if len(splitted_template) > 1:
                         st.markdown("###### Target template")
@@ -608,6 +616,14 @@ def run_app():
                             )
 
                             # Jinja
+                            st.markdown("""
+                            <style>
+                            textarea{
+                            unicode-bidi:plaintext;
+                            direction: RTL;
+                            }
+                            </style>
+                                """, unsafe_allow_html=True)
                             state.jinja = st.text_area("Template", height=40, value=template.jinja)
 
                             # Submit form
